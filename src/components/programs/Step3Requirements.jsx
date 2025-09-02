@@ -129,7 +129,6 @@ export default function Step3Requirements({ data, onDataChange }) {
         contentHash: hashHex
       });
 
-      // Parties: founder (current user email unknown in mock), and placeholder creator email
       const founderEmail = 'founder@example.com';
       const creatorEmail = 'creator@example.com';
       await addContractParty({ contractId: draft.id, role: 'founder', email: founderEmail, fullName: 'Founder' });
@@ -139,7 +138,7 @@ export default function Step3Requirements({ data, onDataChange }) {
       alert('Contract draft created. Next: e-sign envelope.');
     } catch (e) {
       console.error('Issue contract failed', e);
-      alert('Failed to issue contract. Check console.');
+      alert(`Failed to issue contract: ${e?.message || 'Unknown error'}. Ensure you are logged in and Supabase RLS/policies allow inserts.`);
     }
   };
 
