@@ -12,7 +12,7 @@ import CreatorProfile from "./CreatorProfile";
 import CreatorAnalytics from "./CreatorAnalytics";
 import CreatorProgramDetails from "./CreatorProgramDetails";
 import AuthCallback from "./AuthCallback";
-import Dashboard from "./Dashboard";
+import Dashboard from "./dashboard";
 import Documentation from "./Documentation";
 import Messages from "./Messages";
 import PortalRouter from "./PortalRouter";
