@@ -92,6 +92,7 @@ function PagesContent() {
                 <Route path="/CreatorAnalytics" element={<CreatorAnalytics />} />
                 <Route path="/CreatorProgramDetails" element={<CreatorProgramDetails />} />
                 <Route path="/AuthCallback" element={<AuthCallback />} />
+                <Route path="/auth-callback" element={<AuthCallback />} />
                 <Route path="/Dashboard" element={<Dashboard />} />
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/Documentation" element={<Documentation />} />
