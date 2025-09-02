@@ -23,7 +23,7 @@ export default function PublicNavigation() {
             src="https://tcmkyzcbndmaqxfjvpfs.supabase.co/storage/v1/object/public/images/StakeShare%20logo.png" 
             alt="StakeShare Logo" 
             className="w-10 h-10 rounded-xl object-cover opacity-80"
-            style={{ opacity: 0.8 }}
+            style={{ opacity: 0.8, filter: 'opacity(80%)' }}
           />
           <span className="font-bold text-white text-xl">StakeShare</span>
         </Link>
