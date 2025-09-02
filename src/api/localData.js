@@ -113,15 +113,22 @@ export class LocalEntity {
     Object.assign(this, data);
   }
 
+  static entityKey() {
+    // Basic pluralization with overrides for irregular nouns
+    const name = this.name.toLowerCase();
+    const overrides = { company: 'companies' };
+    return overrides[name] || `${name}s`;
+  }
+
   static async get(id) {
-    const entityType = this.name.toLowerCase() + 's';
+    const entityType = this.entityKey();
     const entity = mockData[entityType]?.find(item => item.id === id);
     if (!entity) throw new Error(`${this.name} not found`);
     return new this(entity);
   }
 
   static async list(filters = {}) {
-    const entityType = this.name.toLowerCase() + 's';
+    const entityType = this.entityKey();
     let entities = mockData[entityType] || [];
     
     // Apply filters
@@ -145,7 +152,7 @@ export class LocalEntity {
   }
 
   static async create(data) {
-    const entityType = this.name.toLowerCase() + 's';
+    const entityType = this.entityKey();
     const newEntity = {
       ...data,
       id: Date.now().toString(),
@@ -153,12 +160,13 @@ export class LocalEntity {
       updated_at: new Date().toISOString()
     };
     
+    if (!mockData[entityType]) mockData[entityType] = [];
     mockData[entityType].push(newEntity);
     return new this(newEntity);
   }
 
   static async update(id, data) {
-    const entityType = this.name.toLowerCase() + 's';
+    const entityType = this.entityKey();
     const index = mockData[entityType].findIndex(entity => entity.id === id);
     if (index === -1) throw new Error(`${this.name} not found`);
     
@@ -172,7 +180,7 @@ export class LocalEntity {
   }
 
   static async delete(id) {
-    const entityType = this.name.toLowerCase() + 's';
+    const entityType = this.entityKey();
     const index = mockData[entityType].findIndex(entity => entity.id === id);
     if (index === -1) throw new Error(`${this.name} not found`);
     
@@ -184,7 +192,9 @@ export class LocalEntity {
 export class Program extends LocalEntity {}
 export class Creator extends LocalEntity {}
 export class Application extends LocalEntity {}
-export class Company extends LocalEntity {}
+export class Company extends LocalEntity {
+  static entityKey() { return 'companies'; }
+}
 
 // Mock auth system
 export const auth = {
