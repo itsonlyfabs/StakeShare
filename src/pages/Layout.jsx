@@ -258,7 +258,7 @@ function FounderLayout({ children, user, onLogout, onSwitchToCreator, canSwitch 
               <img 
                 src="https://tcmkyzcbndmaqxfjvpfs.supabase.co/storage/v1/object/public/images/StakeShare%20logo.png" 
                 alt="StakeShare Logo" 
-                className="w-10 h-10 rounded-xl object-cover"
+                className="w-10 h-10 rounded-xl object-cover opacity-80"
               />
               <div>
                 <h2 className="font-bold text-gray-800 text-lg">StakeShare</h2>
@@ -369,7 +369,7 @@ function CreatorLayout({ children, user, onLogout, onSwitchToFounder, canSwitch 
                       <img 
                         src="https://tcmkyzcbndmaqxfjvpfs.supabase.co/storage/v1/object/public/images/StakeShare%20logo.png" 
                         alt="StakeShare Logo" 
-                        className="w-10 h-10 rounded-xl object-cover"
+                        className="w-10 h-10 rounded-xl object-cover opacity-80"
                       />
                       <div>
                           <h2 className="font-bold text-gray-800 text-lg">StakeShare</h2>
@@ -403,7 +403,7 @@ function CreatorLayout({ children, user, onLogout, onSwitchToFounder, canSwitch 
                       <img 
                         src="https://tcmkyzcbndmaqxfjvpfs.supabase.co/storage/v1/object/public/images/StakeShare%20logo.png" 
                         alt="StakeShare Logo" 
-                        className="w-10 h-10 rounded-full object-cover"
+                        className="w-10 h-10 rounded-full object-cover opacity-80"
                       />
                       <div className="flex-1 min-w-0">
                           <p className="font-semibold text-gray-800 text-sm truncate">{user?.full_name}</p>
@@ -425,7 +425,7 @@ function CreatorLayout({ children, user, onLogout, onSwitchToFounder, canSwitch 
                     <img 
                       src="https://tcmkyzcbndmaqxfjvpfs.supabase.co/storage/v1/object/public/images/StakeShare%20logo.png" 
                       alt="StakeShare Logo" 
-                      className="w-10 h-10 rounded-xl object-cover"
+                      className="w-10 h-10 rounded-xl object-cover opacity-80"
                     />
                     <h2 className="font-bold text-gray-800 text-lg">Creator Portal</h2>
                   </div>
@@ -462,7 +462,7 @@ function CreatorLayout({ children, user, onLogout, onSwitchToFounder, canSwitch 
                     <img 
                       src="https://tcmkyzcbndmaqxfjvpfs.supabase.co/storage/v1/object/public/images/StakeShare%20logo.png" 
                       alt="StakeShare Logo" 
-                      className="w-10 h-10 rounded-full object-cover"
+                      className="w-10 h-10 rounded-full object-cover opacity-80"
                     />
                     <div className="flex-1 min-w-0">
                         <p className="font-semibold text-gray-800 text-sm truncate">{user?.full_name}</p>
