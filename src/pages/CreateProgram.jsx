@@ -57,20 +57,46 @@ export default function CreateProgramPage() {
     const fetchCompany = async () => {
       try {
         const storedUser = localStorage.getItem('stakeshare_user');
-        if (storedUser) {
-          const user = JSON.parse(storedUser);
-          const companies = await Company.filter({ created_by: user.email });
-          if (companies.length > 0) {
-            setCompanyId(companies[0].id);
-          } else {
-            setError("No company found. Please create a company profile first.");
-          }
-        } else {
+        if (!storedUser) {
           setError("User not authenticated. Please log in again.");
+          return;
         }
+        const user = JSON.parse(storedUser);
+
+        // Prefer company created by this user (Supabase prod), else fall back to any local mock company
+        let companies = [];
+        try {
+          companies = await Company.filter({ created_by: user.email });
+        } catch (_) {
+          // ignore and try listing all
+        }
+        if (!companies || companies.length === 0) {
+          try {
+            companies = await Company.list();
+          } catch (_) {
+            companies = [];
+          }
+        }
+
+        if (companies && companies.length > 0) {
+          setCompanyId(companies[0].id);
+          setError(null);
+          return;
+        }
+
+        // If still none found (e.g., fresh local mock), create a lightweight default company for this user
+        const emailDomain = (user.email || '').split('@')[1] || 'example.com';
+        const defaultName = (emailDomain.split('.')[0] || 'MyCompany') + ' Inc.';
+        const created = await Company.create({
+          name: defaultName,
+          website: `https://${emailDomain}`,
+          created_by: user.email
+        });
+        setCompanyId(created.id);
+        setError(null);
       } catch (e) {
-        setError("Could not verify user or company. Please log in again.");
         console.error("Error fetching company:", e);
+        setError("Could not verify user or company. Please log in again.");
       }
     };
     fetchCompany();
