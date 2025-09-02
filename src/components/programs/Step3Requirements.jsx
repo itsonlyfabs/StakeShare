@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { X, Plus, FileText, Camera, Video, Mic, MessageSquare, Hash, AtSign, Eye } from "lucide-react";
 import { listTemplates, renderTemplate } from "@/api/contracts";
+import { createContractDraft, addContractParty, addContractEvent, addContractVersion } from "@/api/contractsSupabase";
 
 const contentTypeIcons = {
   post: <MessageSquare className="w-4 h-4" />,
@@ -100,6 +101,48 @@ export default function Step3Requirements({ data, onDataChange }) {
     return renderTemplate(selectedTemplateId, vars);
   }, [selectedTemplateId, data]);
 
+  const handleIssueContract = async () => {
+    try {
+      const encoder = new TextEncoder();
+      const bytes = encoder.encode(previewHtml);
+      // Simple hash polyfill for demo
+      const digest = await crypto.subtle.digest('SHA-256', bytes);
+      const hashArray = Array.from(new Uint8Array(digest));
+      const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+
+      const variables = {
+        company_name: 'Your Company',
+        creator_name: 'Creator Name',
+        program_name: data.name || 'Program',
+        equity_pct: data.default_allocation_percent,
+        rev_share_pct: data.revenue_share_enabled ? data.revenue_share_percent : 0,
+        min_posts: data.posting_requirements.min_posts_per_month,
+        governing_law: data.legal_requirements.compliance_jurisdiction?.toUpperCase(),
+        venue: 'Courts of ' + (data.legal_requirements.compliance_jurisdiction || 'US').toUpperCase(),
+        effective_date: new Date().toISOString().slice(0, 10)
+      };
+
+      const draft = await createContractDraft({
+        templateId: selectedTemplateId,
+        variables,
+        contentHtml: previewHtml,
+        contentHash: hashHex
+      });
+
+      // Parties: founder (current user email unknown in mock), and placeholder creator email
+      const founderEmail = 'founder@example.com';
+      const creatorEmail = 'creator@example.com';
+      await addContractParty({ contractId: draft.id, role: 'founder', email: founderEmail, fullName: 'Founder' });
+      await addContractParty({ contractId: draft.id, role: 'creator', email: creatorEmail, fullName: 'Creator' });
+      await addContractVersion({ contractId: draft.id, version: 1, contentHtml: previewHtml, contentHash: hashHex });
+      await addContractEvent({ contractId: draft.id, eventType: 'issued', payload: { templateId: selectedTemplateId } });
+      alert('Contract draft created. Next: e-sign envelope.');
+    } catch (e) {
+      console.error('Issue contract failed', e);
+      alert('Failed to issue contract. Check console.');
+    }
+  };
+
   return (
     <div className="space-y-8">
       <div>
@@ -189,6 +232,11 @@ export default function Step3Requirements({ data, onDataChange }) {
         <div className="space-y-2">
           <Label className="flex items-center gap-2"><Eye className="w-4 h-4" /> Contract Preview</Label>
           <div className="glass-card rounded-lg p-4 text-sm prose prose-invert max-w-none" dangerouslySetInnerHTML={{ __html: previewHtml }} />
+          <div className="flex justify-end">
+            <Button onClick={handleIssueContract} className="mt-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white">
+              Issue Contract Draft
+            </Button>
+          </div>
         </div>
       </div>
 
