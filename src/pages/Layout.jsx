@@ -64,6 +64,7 @@ const publicPages = [
 
 export default function Layout({ children, currentPageName }) {
   const navigate = useNavigate();
+  const location = useLocation();
   const [user, setUser] = useState(null);
   const [initialized, setInitialized] = useState(false);
   const [canSwitchPortals, setCanSwitchPortals] = useState(false);
@@ -97,12 +98,29 @@ export default function Layout({ children, currentPageName }) {
           // Check if user is authenticated with Supabase
           const { user: supabaseUser } = await auth.getCurrentUser();
           if (supabaseUser) {
-            // User is authenticated but no role stored, redirect to home
-            navigate(createPageUrl('home'));
-            return;
+            // Hydrate a default local user with inferred role
+            const pendingRole = localStorage.getItem('stakeshare_role');
+            const inferredRole = pendingRole || (location.pathname.toLowerCase().includes('creator') ? 'creator' : 'founder');
+            const hydratedUser = {
+              id: supabaseUser.id,
+              email: supabaseUser.email,
+              full_name: supabaseUser.user_metadata?.full_name || supabaseUser.email,
+              avatar_url: supabaseUser.user_metadata?.avatar_url,
+              role: inferredRole
+            };
+            localStorage.setItem('stakeshare_user', JSON.stringify(hydratedUser));
+            setUser(hydratedUser);
+            setCurrentPortal(inferredRole);
+
+            const [companies, creators] = await Promise.all([
+              Company.filter({ created_by: hydratedUser.email }),
+              Creator.filter({ email: hydratedUser.email })
+            ]);
+            setCanSwitchPortals(companies.length > 0 && creators.length > 0);
+          } else {
+            setUser(null);
+            setCurrentPortal('founder');
           }
-          setUser(null);
-          setCurrentPortal('founder');
         }
       } catch (error) {
         setUser(null);
@@ -114,7 +132,7 @@ export default function Layout({ children, currentPageName }) {
     };
 
     initializeSession();
-  }, [currentPageName, navigate]);
+  }, [currentPageName, navigate, location.pathname]);
 
   useEffect(() => {
     // For public pages, don't redirect
