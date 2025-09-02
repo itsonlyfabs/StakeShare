@@ -108,7 +108,7 @@ export default function HomePage() {
             <img 
               src="https://tcmkyzcbndmaqxfjvpfs.supabase.co/storage/v1/object/public/images/StakeShare%20logo.png" 
               alt="StakeShare Logo" 
-              className="w-10 h-10 rounded-xl object-cover"
+              className="w-10 h-10 rounded-xl object-cover opacity-80"
             />
             <span className="font-bold text-white text-xl">StakeShare</span>
           </div>
@@ -389,7 +389,7 @@ export default function HomePage() {
                 <img 
                   src="https://tcmkyzcbndmaqxfjvpfs.supabase.co/storage/v1/object/public/images/StakeShare%20logo.png" 
                   alt="StakeShare Logo" 
-                  className="w-8 h-8 rounded-lg object-cover"
+                  className="w-8 h-8 rounded-lg object-cover opacity-80"
                 />
                 <span className="font-bold text-white">StakeShare</span>
               </div>

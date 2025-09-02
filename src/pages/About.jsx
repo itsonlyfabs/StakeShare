@@ -17,7 +17,7 @@ export default function AboutPage() {
               <img 
                 src="https://tcmkyzcbndmaqxfjvpfs.supabase.co/storage/v1/object/public/images/StakeShare%20logo.png" 
                 alt="StakeShare Logo" 
-                className="w-16 h-16 object-cover"
+                className="w-16 h-16 object-cover opacity-80"
               />
             </div>
             <h1 className="text-5xl md:text-6xl font-bold mb-4">About StakeShare</h1>

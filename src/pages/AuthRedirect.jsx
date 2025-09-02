@@ -35,7 +35,7 @@ export default function AuthRedirectPage() {
                   <img 
                     src="https://tcmkyzcbndmaqxfjvpfs.supabase.co/storage/v1/object/public/images/StakeShare%20logo.png" 
                     alt="StakeShare Logo" 
-                    className="w-12 h-12 object-cover"
+                    className="w-12 h-12 object-cover opacity-80"
                   />
                 </div>
                 <h1 className="text-2xl font-bold mb-4">StakeShare Login</h1>
