@@ -67,8 +67,12 @@ export default function CreatorDashboard() {
 
     const handleRoleSwitch = async () => {
         try {
-            const currentUser = await User.me();
-            await User.update(currentUser.id, { preferred_dashboard: 'founder' });
+            const stored = localStorage.getItem('stakeshare_user');
+            const current = stored ? JSON.parse(stored) : null;
+            if (current) {
+                current.role = 'founder';
+                localStorage.setItem('stakeshare_user', JSON.stringify(current));
+            }
             window.location.href = createPageUrl('Dashboard');
         } catch (error) {
             console.error("Error switching role:", error);
