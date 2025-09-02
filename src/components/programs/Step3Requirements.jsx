@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo, useState } from 'react';
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
@@ -6,7 +6,8 @@ import { Switch } from "@/components/ui/switch";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { X, Plus, FileText, Camera, Video, Mic, MessageSquare, Hash, AtSign } from "lucide-react";
+import { X, Plus, FileText, Camera, Video, Mic, MessageSquare, Hash, AtSign, Eye } from "lucide-react";
+import { listTemplates, renderTemplate } from "@/api/contracts";
 
 const contentTypeIcons = {
   post: <MessageSquare className="w-4 h-4" />,
@@ -20,6 +21,9 @@ const contentTypeIcons = {
 };
 
 export default function Step3Requirements({ data, onDataChange }) {
+  const [selectedTemplateId, setSelectedTemplateId] = useState('participation_agreement_v1');
+  const templates = useMemo(() => listTemplates(), []);
+
   const handleLegalChange = (key, value) => {
     onDataChange({
       legal_requirements: {
@@ -80,6 +84,22 @@ export default function Step3Requirements({ data, onDataChange }) {
     handlePostingChange('mention_requirements', current.filter(m => m !== mention));
   };
 
+  const previewHtml = useMemo(() => {
+    const vars = {
+      company_name: 'Your Company',
+      creator_name: 'Creator Name',
+      program_name: data.name || 'Program',
+      equity_pct: data.default_allocation_percent,
+      rev_share_pct: data.revenue_share_enabled ? data.revenue_share_percent : 0,
+      min_posts: data.posting_requirements.min_posts_per_month,
+      governing_law: data.legal_requirements.compliance_jurisdiction?.toUpperCase(),
+      venue: 'Courts of ' + (data.legal_requirements.compliance_jurisdiction || 'US').toUpperCase(),
+      effective_date: new Date().toISOString().slice(0, 10),
+      change_summary: 'N/A'
+    };
+    return renderTemplate(selectedTemplateId, vars);
+  }, [selectedTemplateId, data]);
+
   return (
     <div className="space-y-8">
       <div>
@@ -118,23 +138,42 @@ export default function Step3Requirements({ data, onDataChange }) {
           </div>
         </div>
 
-        <div className="space-y-2">
-          <Label>Legal Jurisdiction</Label>
-          <Select 
-            value={data.legal_requirements.compliance_jurisdiction} 
-            onValueChange={(value) => handleLegalChange('compliance_jurisdiction', value)}
-          >
-            <SelectTrigger className="glass border-white/20">
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent className="glass-card border-white/20 text-white">
-              <SelectItem value="us">United States</SelectItem>
-              <SelectItem value="uk">United Kingdom</SelectItem>
-              <SelectItem value="eu">European Union</SelectItem>
-              <SelectItem value="canada">Canada</SelectItem>
-              <SelectItem value="global">Global</SelectItem>
-            </SelectContent>
-          </Select>
+        <div className="grid md:grid-cols-2 gap-6">
+          <div className="space-y-2">
+            <Label>Legal Jurisdiction</Label>
+            <Select 
+              value={data.legal_requirements.compliance_jurisdiction} 
+              onValueChange={(value) => handleLegalChange('compliance_jurisdiction', value)}
+            >
+              <SelectTrigger className="glass border-white/20">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent className="glass-card border-white/20 text-white">
+                <SelectItem value="us">United States</SelectItem>
+                <SelectItem value="uk">United Kingdom</SelectItem>
+                <SelectItem value="eu">European Union</SelectItem>
+                <SelectItem value="canada">Canada</SelectItem>
+                <SelectItem value="global">Global</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+
+          <div className="space-y-2">
+            <Label>Contract Template</Label>
+            <Select 
+              value={selectedTemplateId}
+              onValueChange={(value) => setSelectedTemplateId(value)}
+            >
+              <SelectTrigger className="glass border-white/20">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent className="glass-card border-white/20 text-white">
+                {templates.map(t => (
+                  <SelectItem key={t.id} value={t.id}>{t.name}</SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
         </div>
 
         <div className="space-y-2">
@@ -145,6 +184,11 @@ export default function Step3Requirements({ data, onDataChange }) {
             placeholder="Add any custom legal terms or requirements..."
             className="glass border-white/20 min-h-[100px]"
           />
+        </div>
+
+        <div className="space-y-2">
+          <Label className="flex items-center gap-2"><Eye className="w-4 h-4" /> Contract Preview</Label>
+          <div className="glass-card rounded-lg p-4 text-sm prose prose-invert max-w-none" dangerouslySetInnerHTML={{ __html: previewHtml }} />
         </div>
       </div>
 
