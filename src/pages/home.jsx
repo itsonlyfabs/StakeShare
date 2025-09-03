@@ -16,7 +16,8 @@ import {
   BarChart3,
   CheckCircle,
   Sparkles,
-  Star
+  Star,
+  AlertTriangle
 } from "lucide-react";
 
 const features = [
@@ -418,6 +419,7 @@ export default function HomePage() {
             <div>
               <h4 className="font-semibold text-white mb-4">Legal</h4>
               <ul className="space-y-2 text-white/60 text-sm">
+                <li><Link to={createPageUrl("PublicDocumentation")} state={{}} className="hover:text-white transition-colors" onClick={(e)=>{e.preventDefault(); window.location.href = createPageUrl('PublicDocumentation') + '?section=legal-disclaimers';}}>Legal & Disclaimers</Link></li>
                 <li><Link to={createPageUrl("PrivacyPolicy")} className="hover:text-white transition-colors">Privacy Policy</Link></li>
                 <li><Link to={createPageUrl("TermsOfService")} className="hover:text-white transition-colors">Terms of Service</Link></li>
                 <li><Link to={createPageUrl("Security")} className="hover:text-white transition-colors">Security</Link></li>
@@ -427,6 +429,17 @@ export default function HomePage() {
           </div>
           <div className="border-t border-white/10 mt-12 pt-8 text-center text-white/60 text-sm">
             © 2024 StakeShare. All rights reserved.
+          </div>
+          
+          {/* Legal Notice */}
+          <div className="mt-6 text-center">
+            <div className="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-lg px-4 py-2">
+              <AlertTriangle className="w-4 h-4 text-yellow-400" />
+              <span className="text-white/70 text-xs">
+                <strong>Legal Notice:</strong> Contract templates are for informational purposes only. 
+                We recommend consulting qualified legal counsel before use.
+              </span>
+            </div>
           </div>
         </div>
       </footer>

@@ -6,6 +6,7 @@ import { createPageUrl } from '@/utils';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { ArrowRight, Crown, DollarSign, FileText, Trash2, XCircle } from 'lucide-react';
+import TerminationRequestButton from "@/components/programs/TerminationRequestButton";
 
 const statusColors = {
     applied: "bg-blue-100/20 text-blue-300 border-blue-300/20",
@@ -179,6 +180,22 @@ export default function CreatorDashboard() {
                                         <Trash2 className="w-4 h-4 mr-1 sm:mr-2" />
                                         Remove
                                     </Button>
+                                )}
+                                {app.status === 'approved' && (
+                                    <TerminationRequestButton
+                                        contract={{
+                                            id: app.id,
+                                            program_name: app.programName,
+                                            equity_pct: 0.1, // Default equity percentage
+                                            status: 'active',
+                                            termination_notice_days: 30,
+                                            company_valuation: 1000000,
+                                            months_served: 1,
+                                            total_months: 12
+                                        }}
+                                        userRole="creator"
+                                        className="text-orange-500 hover:text-orange-400"
+                                    />
                                 )}
                             </div>
                         </div>

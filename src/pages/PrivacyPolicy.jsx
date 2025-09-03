@@ -2,6 +2,7 @@
 import React from 'react';
 import { Shield } from 'lucide-react';
 import PublicNavigation from '../components/PublicNavigation';
+import PublicFooter from '@/components/PublicFooter';
 
 export default function PrivacyPolicyPage() {
   return (
@@ -31,6 +32,7 @@ export default function PrivacyPolicyPage() {
           </div>
         </div>
       </div>
+      <PublicFooter />
     </div>
   );
 }

@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import { createPageUrl } from "@/utils";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Crown, Users, TrendingUp, Settings, Eye } from "lucide-react";
+import { Crown, Users, TrendingUp, Settings, Eye, AlertTriangle } from "lucide-react";
+import TerminationRequestButton from "@/components/programs/TerminationRequestButton";
 
 const statusColors = {
   draft: "bg-gray-100/20 text-gray-300 border-gray-300/20",
@@ -50,6 +51,25 @@ export default function ProgramList({ programs }) {
                     <Settings className="w-4 h-4" />
                     </Button>
                 </Link>
+                <TerminationRequestButton
+                  contract={{
+                    id: program.id,
+                    program_name: program.name,
+                    equity_pct: program.default_allocation_percent,
+                    status: program.status,
+                    termination_notice_days: 30,
+                    company_valuation: 1000000
+                  }}
+                  userRole="founder"
+                  isFounder={true}
+                  programCreators={[
+                    // Mock data - in production this would come from API
+                    { id: 1, name: 'John Creator', email: 'john@example.com', status: 'active' },
+                    { id: 2, name: 'Sarah Influencer', email: 'sarah@example.com', status: 'active' },
+                    { id: 3, name: 'Mike Content', email: 'mike@example.com', status: 'active' }
+                  ]}
+                  className="text-orange-500 hover:text-orange-400"
+                />
               </div>
             </div>
 

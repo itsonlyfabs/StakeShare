@@ -35,6 +35,7 @@ export default function Documentation() {
     { id: 'contracts', title: 'Contract Enforcement', icon: Shield },
     { id: 'analytics', title: 'Analytics', icon: BarChart3 },
     { id: 'fraud', title: 'Fraud Prevention', icon: AlertTriangle },
+    { id: 'legal-disclaimers', title: 'Legal & Disclaimers', icon: AlertTriangle },
     { id: 'support', title: 'Support', icon: HelpCircle }
   ];
 
@@ -835,6 +836,401 @@ export default function Documentation() {
                       <li>• Appeal process for disputed transactions</li>
                       <li>• Account suspension for repeated violations</li>
                     </ul>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        );
+
+      case 'legal-disclaimers':
+        return (
+          <div className="space-y-6">
+            <h2 className="text-2xl font-bold text-white">Legal Protections & Disclaimers</h2>
+            
+            {/* Platform Legal Status */}
+            <Card className="glass border-white/10">
+              <CardHeader>
+                <CardTitle className="text-white flex items-center gap-2">
+                  <AlertTriangle className="w-5 h-5 text-red-400" />
+                  Platform Legal Status
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="bg-red-900/20 border border-red-500/30 rounded-lg p-4">
+                  <p className="text-white/90"><strong className="text-red-300">IMPORTANT:</strong> StakeShare is NOT a law firm and does not provide legal advice, legal services, or legal representation.</p>
+                </div>
+                <p className="text-white/80">Our platform provides contract templates and tools for informational and educational purposes only. These templates are designed to help users understand common contract structures but should not be considered as legal advice.</p>
+                <p className="text-white/80"><strong>We strongly recommend that all users consult with qualified legal counsel</strong> before entering into any legally binding agreements.</p>
+              </CardContent>
+            </Card>
+
+            {/* Termination Clauses */}
+            <Card className="glass border-white/10">
+              <CardHeader>
+                <CardTitle className="text-white flex items-center gap-2">
+                  <AlertTriangle className="w-5 h-5 text-orange-400" />
+                  Contract Termination Clauses
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div className="space-y-4">
+                    <h4 className="font-semibold text-orange-300">Termination Rights</h4>
+                    <ul className="space-y-2 text-white/70 text-sm">
+                      <li className="flex items-center gap-2">
+                        <CheckCircle className="w-4 h-4 text-green-400" />
+                        Either party may terminate with notice
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <CheckCircle className="w-4 h-4 text-green-400" />
+                        Immediate termination for breach
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <CheckCircle className="w-4 h-4 text-green-400" />
+                        Mutual agreement termination
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <CheckCircle className="w-4 h-4 text-green-400" />
+                        Performance-based termination
+                      </li>
+                    </ul>
+                  </div>
+                  
+                  <div className="space-y-4">
+                    <h4 className="font-semibold text-orange-300">Notice Requirements</h4>
+                    <ul className="space-y-2 text-white/70 text-sm">
+                      <li className="flex items-center gap-2">
+                        <CheckCircle className="w-4 h-4 text-green-400" />
+                        Configurable notice periods (7-90 days)
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <CheckCircle className="w-4 h-4 text-green-400" />
+                        Written termination request
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <CheckCircle className="w-4 h-4 text-green-400" />
+                        Reason for termination required
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <CheckCircle className="w-4 h-4 text-green-400" />
+                        Effective date specification
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="bg-orange-900/20 border border-orange-500/30 rounded-lg p-4">
+                  <h5 className="font-semibold text-orange-300 mb-2">Phantom Equity Protection</h5>
+                  <p className="text-sm text-white/80">
+                    <strong>Fair Compensation Formula:</strong> Upon termination, creators receive compensation for earned phantom equity based on time served and performance metrics. 
+                    The formula ensures both parties are treated fairly: <strong>(Equity% × Months Served ÷ Total Months) × Company Valuation</strong>.
+                  </p>
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div className="space-y-4">
+                    <h4 className="font-semibold text-orange-300">Founder Protections</h4>
+                    <ul className="space-y-2 text-white/70 text-sm">
+                      <li>• Clear termination procedures</li>
+                      <li>• Performance-based termination rights</li>
+                      <li>• Reasonable notice requirements</li>
+                      <li>• Dispute resolution options</li>
+                      <li>• IP and confidentiality protection</li>
+                    </ul>
+                  </div>
+                  
+                  <div className="space-y-4">
+                    <h4 className="font-semibold text-orange-300">Creator Protections</h4>
+                    <ul className="space-y-2 text-white/70 text-sm">
+                      <li>• Fair compensation for time served</li>
+                      <li>• Clear termination timeline</li>
+                      <li>• Rights to created content</li>
+                      <li>• Appeal and dispute processes</li>
+                      <li>• Professional termination experience</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="bg-blue-900/20 border border-blue-500/30 rounded-lg p-4">
+                  <h5 className="font-semibold text-blue-300 mb-2">Dispute Resolution</h5>
+                  <p className="text-sm text-white/80">
+                    Termination disputes are resolved through configurable methods including <strong>mediation</strong>, <strong>arbitration</strong>, or <strong>direct negotiation</strong>. 
+                    This ensures fair resolution while maintaining professional relationships between parties.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Founder Legal Protections */}
+            <Card className="glass border-white/10">
+              <CardHeader>
+                <CardTitle className="text-white flex items-center gap-2">
+                  <Shield className="w-5 h-5 text-blue-400" />
+                  Founder Legal Protections
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div className="space-y-3">
+                    <h4 className="font-semibold text-blue-300">Contract Templates</h4>
+                    <ul className="space-y-2 text-white/70 text-sm">
+                      <li className="flex items-center gap-2">
+                        <CheckCircle className="w-4 h-4 text-green-400" />
+                        Professionally structured agreements
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <CheckCircle className="w-4 h-4 text-green-400" />
+                        Industry-standard legal language
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <CheckCircle className="w-4 h-4 text-green-400" />
+                        Customizable terms and conditions
+                      </li>
+                    </ul>
+                  </div>
+                  <div className="space-y-3">
+                    <h4 className="font-semibold text-blue-300">Legal Safeguards</h4>
+                    <ul className="space-y-2 text-white/70 text-sm">
+                      <li className="flex items-center gap-2">
+                        <CheckCircle className="w-4 h-4 text-green-400" />
+                        Comprehensive liability disclaimers
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <CheckCircle className="w-4 h-4 text-green-400" />
+                        Platform indemnification clauses
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <CheckCircle className="w-4 h-4 text-green-400" />
+                        Severability and enforcement provisions
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Creator Legal Protections */}
+            <Card className="glass border-white/10">
+              <CardHeader>
+                <CardTitle className="text-white flex items-center gap-2">
+                  <Users className="w-5 h-5 text-green-400" />
+                  Creator Legal Protections
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div className="space-y-3">
+                    <h4 className="font-semibold text-green-300">Transparent Terms</h4>
+                    <ul className="space-y-2 text-white/70 text-sm">
+                      <li className="flex items-center gap-2">
+                        <CheckCircle className="w-4 h-4 text-green-400" />
+                        Clear compensation structures
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <CheckCircle className="w-4 h-4 text-green-400" />
+                        Explicit posting requirements
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <CheckCircle className="w-4 h-4 text-green-400" />
+                        Defined termination conditions
+                      </li>
+                    </ul>
+                  </div>
+                  <div className="space-y-3">
+                    <h4 className="font-semibold text-green-300">Legal Rights</h4>
+                    <ul className="space-y-2 text-white/70 text-sm">
+                      <li className="flex items-center gap-2">
+                        <CheckCircle className="w-4 h-4 text-green-400" />
+                        Independent legal review rights
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <CheckCircle className="w-4 h-4 text-green-400" />
+                        Dispute resolution procedures
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <CheckCircle className="w-4 h-4 text-green-400" />
+                        Intellectual property protections
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Legal Disclaimers */}
+            <Card className="glass border-white/10">
+              <CardHeader>
+                <CardTitle className="text-white flex items-center gap-2">
+                  <AlertTriangle className="w-5 h-5 text-yellow-400" />
+                  Comprehensive Legal Disclaimers
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                <div className="bg-red-900/20 border border-red-500/30 rounded-lg p-4">
+                  <h4 className="font-semibold text-red-300 mb-2">No Legal Advice</h4>
+                  <p className="text-sm text-white/80">The information provided on this platform is for general informational purposes only and should not be construed as legal advice. Users should not rely on this information as a substitute for professional legal counsel.</p>
+                </div>
+                
+                <div className="bg-orange-900/20 border border-orange-500/30 rounded-lg p-4">
+                  <h4 className="font-semibold text-orange-300 mb-2">Independent Legal Review</h4>
+                  <p className="text-sm text-white/80">All parties are strongly encouraged to seek independent legal advice before entering into any agreements. StakeShare assumes no responsibility for the legal adequacy or enforceability of any contracts created using our templates.</p>
+                </div>
+                
+                <div className="bg-purple-900/20 border border-purple-500/30 rounded-lg p-4">
+                  <h4 className="font-semibold text-purple-300 mb-2">Limitation of Liability</h4>
+                  <p className="text-sm text-white/80">StakeShare shall not be liable for any damages, losses, or legal consequences arising from the use of our contract templates or platform services. Users agree to hold StakeShare harmless from any claims related to contract outcomes.</p>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Legal Best Practices */}
+            <Card className="glass border-white/10">
+              <CardHeader>
+                <CardTitle className="text-white flex items-center gap-2">
+                  <Shield className="w-5 h-5 text-blue-400" />
+                  Legal Best Practices
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <h4 className="font-semibold text-blue-300 mb-3">For Founders</h4>
+                    <ul className="space-y-2 text-white/70 text-sm">
+                      <li>• Consult with business attorneys familiar with creator economy</li>
+                      <li>• Ensure compliance with local employment and contract laws</li>
+                      <li>• Consider intellectual property and confidentiality protections</li>
+                      <li>• Review tax implications of compensation structures</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-green-300 mb-3">For Creators</h4>
+                    <ul className="space-y-2 text-white/70 text-sm">
+                      <li>• Seek legal counsel specializing in entertainment law</li>
+                      <li>• Understand your rights regarding content ownership</li>
+                      <li>• Review compensation and payment terms carefully</li>
+                      <li>• Ensure termination clauses are fair and reasonable</li>
+                    </ul>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Termination Workflow Guide */}
+            <Card className="glass border-white/10">
+              <CardHeader>
+                <CardTitle className="text-white flex items-center gap-2">
+                  <AlertTriangle className="w-5 h-5 text-orange-400" />
+                  Termination Workflow Guide
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div className="space-y-4">
+                    <h4 className="font-semibold text-orange-300">Founder Portal</h4>
+                    <div className="space-y-3">
+                      <div className="flex items-start gap-3">
+                        <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center text-white text-xs font-bold mt-0.5">1</div>
+                        <div>
+                          <p className="text-white font-medium">Program Cards</p>
+                          <p className="text-white/70 text-sm">Termination buttons appear on all program cards</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center text-white text-xs font-bold mt-0.5">2</div>
+                        <div>
+                          <p className="text-white font-medium">Request Review</p>
+                          <p className="text-white/70 text-sm">Review and approve/reject creator termination requests</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center text-white text-xs font-bold mt-0.5">3</div>
+                        <div>
+                          <p className="text-white font-medium">Compensation Calculation</p>
+                          <p className="text-white/70 text-sm">Automatic phantom equity compensation calculation</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-4">
+                    <h4 className="font-semibold text-orange-300">Creator Portal</h4>
+                    <div className="space-y-3">
+                      <div className="flex items-start gap-3">
+                        <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center text-white text-xs font-bold mt-0.5">1</div>
+                        <div>
+                          <p className="text-white font-medium">Approved Applications</p>
+                          <p className="text-white/70 text-sm">Termination buttons appear on approved programs</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center text-white text-xs font-bold mt-0.5">2</div>
+                        <div>
+                          <p className="text-white font-medium">Submit Request</p>
+                          <p className="text-white/70 text-sm">Fill out termination form with reason and date</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center text-white text-xs font-bold mt-0.5">3</div>
+                        <div>
+                          <p className="text-white font-medium">Track Status</p>
+                          <p className="text-white/70 text-sm">Monitor request status and compensation details</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-blue-900/20 border border-blue-500/30 rounded-lg p-4">
+                  <h5 className="font-semibold text-blue-300 mb-2">How to Use Termination System</h5>
+                  <div className="grid md:grid-cols-2 gap-4 text-sm text-white/80">
+                    <div>
+                      <h6 className="font-medium text-blue-200 mb-2">For Founders:</h6>
+                      <ul className="space-y-1">
+                        <li>• Click termination button on any program card</li>
+                        <li>• Choose single or multiple creator termination</li>
+                        <li>• Select specific creators from active list</li>
+                        <li>• Select reason and effective date</li>
+                        <li>• Review creator compensation calculations</li>
+                        <li>• Approve or reject termination requests</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h6 className="font-medium text-green-200 mb-2">For Creators:</h6>
+                      <ul className="space-y-1">
+                        <li>• Find approved programs in your dashboard</li>
+                        <li>• Click termination button to start process</li>
+                        <li>• Provide reason and preferred end date</li>
+                        <li>• Wait for founder approval and compensation</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-orange-900/20 border border-orange-500/30 rounded-lg p-4">
+                  <h5 className="font-semibold text-orange-300 mb-2">Multiple Creator Termination</h5>
+                  <p className="text-sm text-white/80 mb-3">
+                    <strong>New Feature:</strong> Founders can now terminate multiple creators simultaneously from a single program.
+                  </p>
+                  <div className="grid md:grid-cols-2 gap-4 text-sm text-white/80">
+                    <div>
+                      <h6 className="font-medium text-orange-200 mb-2">Benefits:</h6>
+                      <ul className="space-y-1">
+                        <li>• Bulk termination for program restructuring</li>
+                        <li>• Consistent termination dates for all creators</li>
+                        <li>• Unified reason and documentation</li>
+                        <li>• Streamlined compensation processing</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h6 className="font-medium text-orange-200 mb-2">Use Cases:</h6>
+                      <ul className="space-y-1">
+                        <li>• Company direction changes</li>
+                        <li>• Budget constraints affecting multiple creators</li>
+                        <li>• Program restructuring or closure</li>
+                        <li>• Performance issues across cohort</li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
               </CardContent>

@@ -2,6 +2,7 @@
 import React from 'react';
 import { FileText } from 'lucide-react';
 import PublicNavigation from '../components/PublicNavigation';
+import PublicFooter from '@/components/PublicFooter';
 
 export default function TermsOfServicePage() {
   return (
@@ -29,6 +30,7 @@ export default function TermsOfServicePage() {
           </div>
         </div>
       </div>
+      <PublicFooter />
     </div>
   );
 }

@@ -2,6 +2,7 @@
 import React from 'react';
 import { Landmark } from 'lucide-react';
 import PublicNavigation from '../components/PublicNavigation';
+import PublicFooter from '@/components/PublicFooter';
 
 export default function CompliancePage() {
   return (
@@ -26,6 +27,7 @@ export default function CompliancePage() {
           </div>
         </div>
       </div>
+      <PublicFooter />
     </div>
   );
 }

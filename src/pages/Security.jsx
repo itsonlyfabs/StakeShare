@@ -2,6 +2,7 @@
 import React from 'react';
 import { ShieldCheck, Lock, DatabaseZap, Users } from 'lucide-react';
 import PublicNavigation from '../components/PublicNavigation';
+import PublicFooter from '@/components/PublicFooter';
 
 export default function SecurityPage() {
   return (
@@ -33,12 +34,13 @@ export default function SecurityPage() {
               <Users className="w-8 h-8 text-purple-400 flex-shrink-0 mt-1" />
               <div>
                 <h2 className="text-2xl font-bold text-white mb-2">Responsible Disclosure</h2>
-                <p className="text-white/80 leading-relaxed">If you believe you have found a security vulnerability in our platform, please let us know. We are committed to working with security researchers to verify and address any potential issues. Please contact us at security@stakeshare.app.</p>
+                <p className="text-white/80 leading-relaxed">If you believe you have found a security vulnerability in our platform, please let us know. We are committed to working with security researchers to verify and address any potential issues. Please contact us at <a className="underline text-white" href="mailto:stakeshare@thehubhq.xyz">stakeshare@thehubhq.xyz</a>.</p>
               </div>
             </div>
           </div>
         </div>
       </div>
+      <PublicFooter />
     </div>
   );
 }

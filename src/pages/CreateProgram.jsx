@@ -79,7 +79,13 @@ export default function CreateProgramPage() {
         }
 
         if (companies && companies.length > 0) {
-          setCompanyId(companies[0].id);
+          const company = companies[0];
+          setCompanyId(company.id);
+          // Store company data in programData for use in contracts
+          setProgramData(prev => ({
+            ...prev,
+            company: company
+          }));
           setError(null);
           return;
         }
@@ -93,6 +99,11 @@ export default function CreateProgramPage() {
           created_by: user.email
         });
         setCompanyId(created.id);
+        // Store company data in programData for use in contracts
+        setProgramData(prev => ({
+          ...prev,
+          company: created
+        }));
         setError(null);
       } catch (e) {
         console.error("Error fetching company:", e);

@@ -6,6 +6,7 @@ import { Badge } from '@/components/ui/badge';
 import { CheckCircle, XCircle, Users, TrendingUp, Loader2 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom'; // Assuming react-router-dom for navigation
 import { createPageUrl } from '@/utils';
+import TerminationRequestButton from "@/components/programs/TerminationRequestButton";
 
 const ProgramCard = ({ program, rules, creator, onViewDetails, existingApplication, isLoadingCreator }) => {
     const checkEligibility = () => {
@@ -53,7 +54,25 @@ const ProgramCard = ({ program, rules, creator, onViewDetails, existingApplicati
             </div>
             <div className="mt-6">
                  {hasApplied ? (
-                    <Button disabled className="w-full capitalize" variant="outline">{applicationStatus}</Button>
+                    <div className="space-y-3">
+                        <Button disabled className="w-full capitalize" variant="outline">{applicationStatus}</Button>
+                        {applicationStatus === 'approved' && (
+                            <TerminationRequestButton
+                                contract={{
+                                    id: existingApplication.id,
+                                    program_name: program.name,
+                                    equity_pct: program.default_allocation_percent,
+                                    status: 'active',
+                                    termination_notice_days: 30,
+                                    company_valuation: 1000000,
+                                    months_served: 1,
+                                    total_months: 12
+                                }}
+                                userRole="creator"
+                                className="w-full text-orange-500 hover:text-orange-400"
+                            />
+                        )}
+                    </div>
                  ) : (
                     <Button onClick={() => onViewDetails(program.id)} className="w-full bg-gradient-to-r from-blue-500 to-cyan-500 text-white glow">
                         {isLoadingCreator ? <Loader2 className="w-4 h-4 animate-spin" /> : 'View Details'}

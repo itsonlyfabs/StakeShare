@@ -1,5 +1,25 @@
 import { supabase } from '@/lib/supabase';
 
+export async function testSupabaseConnection() {
+  try {
+    const { data, error } = await supabase
+      .from('contracts')
+      .select('count')
+      .limit(1);
+    
+    if (error) {
+      console.error('Supabase connection test failed:', error);
+      return { success: false, error: error.message };
+    }
+    
+    console.log('Supabase connection test successful');
+    return { success: true };
+  } catch (e) {
+    console.error('Supabase connection test exception:', e);
+    return { success: false, error: e.message };
+  }
+}
+
 export async function createContractDraft({ templateId, variables, contentHtml, contentHash, programId = null, companyId = null }) {
   const { data: userData, error: userErr } = await supabase.auth.getUser();
   if (userErr) throw userErr;

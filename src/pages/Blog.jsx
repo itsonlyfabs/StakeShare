@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import PublicNavigation from '../components/PublicNavigation';
+import PublicFooter from '@/components/PublicFooter';
 
 export default function BlogPage() {
   const [email, setEmail] = useState('');
@@ -73,6 +74,7 @@ export default function BlogPage() {
           )}
         </div>
       </div>
+      <PublicFooter />
     </div>
   );
 }

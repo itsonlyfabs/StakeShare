@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { Plus, Crown, Users, TrendingUp, Search } from 'lucide-react';
+import TerminationRequestButton from "@/components/programs/TerminationRequestButton";
 
 const statusColors = {
   draft: "bg-gray-100/20 text-gray-300 border-gray-300/20",
@@ -15,9 +16,11 @@ const statusColors = {
 };
 
 const ProgramCard = ({ program }) => (
-  <Link to={createPageUrl(`ProgramDetails?id=${program.id}`)} className="block glass-card rounded-2xl p-6 hover:bg-white/15 transition-all duration-300 group">
+  <div className="glass-card rounded-2xl p-6 hover:bg-white/15 transition-all duration-300 group">
     <div className="flex items-center justify-between mb-4">
-      <h3 className="text-xl font-bold text-white group-hover:text-white/90 transition-colors">{program.name}</h3>
+      <Link to={createPageUrl(`ProgramDetails?id=${program.id}`)}>
+        <h3 className="text-xl font-bold text-white group-hover:text-white/90 transition-colors">{program.name}</h3>
+      </Link>
       <Badge className={`${statusColors[program.status]} border text-xs`}>{program.status}</Badge>
     </div>
     <p className="text-white/70 mb-6 h-10 line-clamp-2">{program.description}</p>
@@ -34,7 +37,35 @@ const ProgramCard = ({ program }) => (
         {program.revenue_share_enabled ? `${program.revenue_share_percent}% rev-share` : 'No rev-share'}
       </div>
     </div>
-  </Link>
+    
+    {/* Action Buttons */}
+    <div className="flex items-center justify-between mt-4 pt-4 border-t border-white/10">
+      <Link to={createPageUrl(`ProgramDetails?id=${program.id}`)}>
+        <Button variant="outline" size="sm" className="glass border-white/20 text-white hover:bg-white/10">
+          View Details
+        </Button>
+      </Link>
+      <TerminationRequestButton
+        contract={{
+          id: program.id,
+          program_name: program.name,
+          equity_pct: program.default_allocation_percent,
+          status: program.status,
+          termination_notice_days: 30,
+          company_valuation: 1000000
+        }}
+        userRole="founder"
+        isFounder={true}
+        programCreators={[
+          // Mock data - in production this would come from API
+          { id: 1, name: 'John Creator', email: 'john@example.com', status: 'active' },
+          { id: 2, name: 'Sarah Influencer', email: 'sarah@example.com', status: 'active' },
+          { id: 3, name: 'Mike Content', email: 'mike@example.com', status: 'active' }
+        ]}
+        className="text-orange-500 hover:text-orange-400"
+      />
+    </div>
+  </div>
 );
 
 export default function ProgramsPage() {

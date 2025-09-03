@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { Button } from '@/components/ui/button';
 import PublicNavigation from '../components/PublicNavigation';
+import PublicFooter from '@/components/PublicFooter';
 
 export default function AboutPage() {
   return (
@@ -36,7 +37,7 @@ export default function AboutPage() {
                 </p>
               </div>
               <div className="h-64 bg-gradient-to-br from-purple-900/80 to-blue-900/80 rounded-xl flex items-center justify-center p-6">
-                <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=800&auto=format&fit=crop" alt="Team collaborating" className="rounded-lg object-cover w-full h-full shadow-2xl" />
+                <img src="https://tcmkyzcbndmaqxfjvpfs.supabase.co/storage/v1/object/public/images/Fabio%20photo.jpg" alt="Team collaborating" className="rounded-lg object-cover w-full h-full shadow-2xl" />
               </div>
             </div>
             
@@ -49,7 +50,7 @@ export default function AboutPage() {
                 </p>
               </div>
               <div className="h-64 bg-gradient-to-br from-cyan-900/80 to-indigo-900/80 rounded-xl flex items-center justify-center p-6 order-1 md:order-2">
-                <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&auto=format&fit=crop" alt="People working together" className="rounded-lg object-cover w-full h-full shadow-2xl" />
+                <img src="https://tcmkyzcbndmaqxfjvpfs.supabase.co/storage/v1/object/public/images/sunrise%20nepal.JPG" alt="People working together" className="rounded-lg object-cover w-full h-full shadow-2xl" />
               </div>
             </div>
           </div>
@@ -72,6 +73,7 @@ export default function AboutPage() {
           </div>
         </div>
       </div>
+      <PublicFooter />
     </div>
   );
 }

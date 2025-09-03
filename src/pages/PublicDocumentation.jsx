@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -19,8 +19,11 @@ import {
   ToggleLeft
 } from 'lucide-react';
 import PublicNavigation from '../components/PublicNavigation';
+import { useLocation } from 'react-router-dom';
+import PublicFooter from '@/components/PublicFooter';
 
 export default function PublicDocumentation() {
+  const location = useLocation();
   const [activeSection, setActiveSection] = useState('overview');
   const [copiedSnippet, setCopiedSnippet] = useState(false);
 
@@ -35,6 +38,8 @@ export default function PublicDocumentation() {
     { id: 'contracts', title: 'Contract Enforcement', icon: Shield },
     { id: 'analytics', title: 'Analytics', icon: BarChart3 },
     { id: 'fraud', title: 'Fraud Prevention', icon: AlertTriangle },
+    { id: 'legal-disclaimers', title: 'Legal & Disclaimers', icon: AlertTriangle },
+    { id: 'termination-workflow', title: 'Termination Clauses & Workflow', icon: Shield },
     { id: 'support', title: 'Support', icon: HelpCircle }
   ];
 
@@ -664,6 +669,172 @@ export default function PublicDocumentation() {
           </div>
         );
 
+      case 'legal-disclaimers':
+        return (
+          <div className="space-y-6">
+            <h2 className="text-2xl font-bold text-white">Legal Protections & Disclaimers</h2>
+            <Card className="glass border-white/10">
+              <CardHeader>
+                <CardTitle className="text-white flex items-center gap-2">
+                  <AlertTriangle className="w-5 h-5 text-red-400" />
+                  Platform Legal Status
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="bg-red-900/20 border border-red-500/30 rounded-lg p-4">
+                  <p className="text-white/90"><strong className="text-red-300">IMPORTANT:</strong> StakeShare is NOT a law firm and does not provide legal advice, legal services, or legal representation.</p>
+                </div>
+                <p className="text-white/80">Our platform provides contract templates and tools for informational and educational purposes only. These templates are designed to help users understand common contract structures but should not be considered as legal advice. We strongly recommend that all users consult with qualified legal counsel before using any legal documents.</p>
+              </CardContent>
+            </Card>
+
+            <Card className="glass border-white/10">
+              <CardHeader>
+                <CardTitle className="text-white">Contract Termination Clauses</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <h4 className="font-semibold text-orange-300">Termination Rights</h4>
+                    <ul className="space-y-2 text-white/70 text-sm">
+                      <li>• Either party may terminate with notice</li>
+                      <li>• Immediate termination for material breach</li>
+                      <li>• Mutual agreement termination</li>
+                      <li>• Performance-based termination</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-orange-300">Notice Requirements</h4>
+                    <ul className="space-y-2 text-white/70 text-sm">
+                      <li>• Configurable notice periods (7–90 days)</li>
+                      <li>• Written termination request</li>
+                      <li>• Reason for termination required</li>
+                      <li>• Effective date specification</li>
+                    </ul>
+                  </div>
+                </div>
+                <div className="bg-orange-900/20 border border-orange-500/30 rounded-lg p-4">
+                  <h5 className="font-semibold text-orange-300 mb-2">Phantom Equity Protection</h5>
+                  <p className="text-sm text-white/80">Fair compensation on termination: (Equity% × Months Served ÷ Total Months) × Company Valuation.</p>
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <h4 className="font-semibold text-blue-300">Founder Protections</h4>
+                    <ul className="space-y-2 text-white/70 text-sm">
+                      <li>• Contract templates with industry-standard language</li>
+                      <li>• Indemnification and liability limitation clauses</li>
+                      <li>• IP and confidentiality enforcement</li>
+                      <li>• Clear breach → termination procedures</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-green-300">Creator Protections</h4>
+                    <ul className="space-y-2 text-white/70 text-sm">
+                      <li>• Transparent compensation structures</li>
+                      <li>• Earned-value phantom equity compensation</li>
+                      <li>• Clear posting requirements and fair timelines</li>
+                      <li>• Dispute resolution and appeal processes</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="bg-blue-900/20 border border-blue-500/30 rounded-lg p-4">
+                  <h5 className="font-semibold text-blue-300 mb-2">Dispute Resolution</h5>
+                  <p className="text-sm text-white/80">Matters are resolved via mediation, arbitration, or direct negotiation (as configured per program). Confidentiality, NDA, and IP provisions survive termination.</p>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="glass border-white/10">
+              <CardHeader>
+                <CardTitle className="text-white">Legal Best Practices</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <h4 className="font-semibold text-blue-300 mb-3">For Founders</h4>
+                    <ul className="space-y-2 text-white/70 text-sm">
+                      <li>• Consult business counsel familiar with creator economy</li>
+                      <li>• Ensure local employment/contract law compliance</li>
+                      <li>• Consider IP assignment and confidentiality scopes</li>
+                      <li>• Review tax implications of payouts/equity</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-green-300 mb-3">For Creators</h4>
+                    <ul className="space-y-2 text-white/70 text-sm">
+                      <li>• Seek entertainment/contract law counsel</li>
+                      <li>• Clarify ownership/licensing of content</li>
+                      <li>• Validate compensation timelines and caps</li>
+                      <li>• Confirm termination/notice obligations</li>
+                    </ul>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        );
+
+      case 'termination-workflow':
+        return (
+          <div className="space-y-6">
+            <h2 className="text-2xl font-bold text-white">Termination Workflow</h2>
+            <Card className="glass border-white/10">
+              <CardHeader>
+                <CardTitle className="text-white">Founder Workflow</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <ul className="space-y-2 text-white/70 text-sm">
+                  <li>• Open program card → Request Termination</li>
+                  <li>• Choose Terminate Program (auto-target all active creators) or Select Creators</li>
+                  <li>• Pick reason and effective date</li>
+                  <li>• Review compensation preview and submit</li>
+                </ul>
+              </CardContent>
+            </Card>
+
+            <Card className="glass border-white/10">
+              <CardHeader>
+                <CardTitle className="text-white">Creator Workflow</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <ul className="space-y-2 text-white/70 text-sm">
+                  <li>• Use termination button on approved program</li>
+                  <li>• Provide reason and preferred end date</li>
+                  <li>• Track request status and compensation</li>
+                </ul>
+              </CardContent>
+            </Card>
+
+            <Card className="glass border-white/10">
+              <CardHeader>
+                <CardTitle className="text-white">Multiple Creator Termination</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <h4 className="font-semibold text-orange-300">Benefits</h4>
+                    <ul className="space-y-2 text-white/70 text-sm">
+                      <li>• Bulk termination for program restructuring</li>
+                      <li>• Consistent dates and unified documentation</li>
+                      <li>• Streamlined compensation processing</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-orange-300">Use Cases</h4>
+                    <ul className="space-y-2 text-white/70 text-sm">
+                      <li>• Company direction changes / budget constraints</li>
+                      <li>• Program closure or cohort reset</li>
+                      <li>• Widespread performance issues</li>
+                    </ul>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        );
+
       case 'analytics':
         return (
           <div className="space-y-6">
@@ -954,6 +1125,15 @@ export default function PublicDocumentation() {
     }
   };
 
+  // Sync section from query param (?section=...)
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const section = params.get('section');
+    if (section) {
+      setActiveSection(section);
+    }
+  }, [location.search]);
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900">
       <PublicNavigation />
@@ -1001,6 +1181,7 @@ export default function PublicDocumentation() {
           </div>
         </div>
       </div>
+      <PublicFooter />
     </div>
   );
 }

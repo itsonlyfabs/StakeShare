@@ -252,6 +252,7 @@ function FounderLayout({ children, user, onLogout, onSwitchToCreator, canSwitch 
     <SidebarProvider>
       <div className="min-h-screen flex w-full bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900">
         <FounderStyles />
+
         <Sidebar className="bg-white/95 backdrop-blur-sm border-r border-gray-200">
           <SidebarHeader className="border-b border-gray-200 p-6 bg-white/50">
             <div className="flex items-center gap-3">
@@ -361,6 +362,7 @@ function CreatorLayout({ children, user, onLogout, onSwitchToFounder, canSwitch 
       <SidebarProvider>
         <div className="min-h-screen flex w-full bg-gradient-to-br from-blue-900 via-indigo-900 to-slate-900 text-white">
           <CreatorStyles />
+
           
           {/* Desktop Sidebar */}
           <Sidebar className="bg-white/95 backdrop-blur-sm border-r border-gray-200 hidden md:flex">

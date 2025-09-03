@@ -25,6 +25,7 @@ import Security from "./Security";
 import Compliance from "./Compliance";
 import PublicDocumentation from "./PublicDocumentation";
 import AuthRedirect from "./AuthRedirect";
+import Legal from "./Legal";
 
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 
@@ -54,7 +55,8 @@ const PAGES = {
     Security: Security,
     Compliance: Compliance,
     PublicDocumentation: PublicDocumentation,
-    AuthRedirect: AuthRedirect
+    AuthRedirect: AuthRedirect,
+    Legal: Legal
 };
 
 function _getCurrentPage(url) {
@@ -107,6 +109,7 @@ function PagesContent() {
                 <Route path="/Compliance" element={<Compliance />} />
                 <Route path="/PublicDocumentation" element={<PublicDocumentation />} />
                 <Route path="/AuthRedirect" element={<AuthRedirect />} />
+                <Route path="/Legal" element={<Legal />} />
             </Routes>
         </Layout>
     );
